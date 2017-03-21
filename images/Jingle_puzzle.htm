@@ -1,0 +1,81 @@
+<html lang='en'>
+    <head>
+        <title>Jquery Drag and Drop Puzzle</title>
+        <script src="jquery-1.7.2.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.core.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.widget.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.mouse.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.sortable.js" type="text/javascript"></script>
+
+        <style>
+            #sortable { list-style-type: none; margin: 10px auto; padding: 0; }
+            #sortable li { float: left;}
+            .msg_text{text-align: center; padding: 20px; font-size: 30px; text-shadow: 1px 1px 1px rgb(21, 23, 28);}
+        </style>
+        <script type="text/javascript">
+            $(function() {
+                $("#sortable").sortable({
+                    opacity: 0.6,
+                    cursor: 'move',
+                    update: function() {
+                        var winningString = "g01,g02,g03,g04,g05,g06,g07,g08,g09";
+                        var currentString = '';
+
+                        $('#sortable li').each(function(){
+                            var imageId = $(this).attr("id");
+              
+                            currentString += imageId.replace("recordArr_", "")+",";
+                        });
+
+                        currentString = currentString.substr(0,(currentString.length) -1);
+
+                        if(currentString == winningString){
+                            alert("Well done, you've won!");
+                        }
+                        console.log(currentString);
+                    }
+                });
+
+            });
+        </script>
+    </head>
+
+    <body bgcolor="#534b89" style=" top:500px;color: #f0f0f0; font: normal 30px 'century gothic';" >
+    <br />
+	<div align="center">Drag and Drop Images and Solve My Puzzle!</div> <br />
+
+<ul id='sortable' style='width:450px;height:300px;'>
+
+	<li class='ui-state-default' id='recordArr_g09' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_09.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g04' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_04.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g03' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_03.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g06' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_06.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g01' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_01.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g08' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_08.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g02' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_02.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g07' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_07.png' />
+	</li>
+	<li class='ui-state-default' id='recordArr_g05' style='border:none;width:150px;height:150px'>
+        	<img src='images/girl_05.png' />
+	</li>
+
+</ul>
+
+
+    </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Learn jQuery UI" />
+		<meta name="keywords" content="HTML,CSS,jQuery UI" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="styles/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/style.css" />
+		<script src ="scripts/jquery.js"></script>
+		<script src ="scripts/jquery-ui.min.js"></script>
+		<script src="scripts/bootstrap.min.js"></script>
+
+		<style>
+			#sortable { list-style-type: none; margin: 0; padding: 0; }
+			 li {width:100px;height:100px; float:left;}
+			 #box{ margin: 200px 50px 50px 50px;  padding: 50px 100px 50px 50px;}
+			 #box2{width: 300px; height:300px; margin: 200px 900px 200px 300px;}
+		</style>
+
+		<script>
+    $( function() {
+        $( "#sortable" ).sortable({
+	        revert: true
+        });
+      $( "#draggable" ).draggable({
+	        connectToSortable: "#sortable",
+	        helper: "clone",
+	        revert: "invalid"
+       });
+     $( "ul, li" ).disableSelection();
+  } );
+</script>
+
+
+<script>
+var seco=0;
+var mins =0;
+var mysetinterval;
+var string_val;
+var parsedint_val;
+var current_display= "";
+
+//start timer with the start button
+$( function() {
+$("#start").click(function(){
+	 mysetinterval = setInterval(myTimer,1000);  
+ });
+});
+
+//stop timer with the stop button
+$( function() {
+$("#stop").click(function( ){  
+	 clearTimeout(mysetinterval);
+ });
+});
+
+
+
+
+
+
+document.getElementById("time").innerHTML = mins + " Minutes : "+ seco + " Seconds";
+function myTimer() {
+	 document.getElementById("time").innerHTML =  mins + " Minutes : "+ seco++ + " Seconds";
+
+  if(seco === 60){
+     mins += 1;
+		 seco = 0;
+  }
+
+	current_display = $("#time").text();
+	string_val = current_display.charAt(0);
+	parsedint_val = parseInt(string_val);
+	if(parsedint_val === 3){
+	 $("#gameover").delay(2000).css("visibility", "visible");
+	 $("#gameover").dialog();
+	 clearTimeout(mysetinterval);
+  }
+
+
+}
+
+
+
+
+
+</script>
+</head>
+
+	<body >
+			<div class="header">
+				 <div class="logo"> Elephant Puzzle Game </div>
+			</div>
+
+<div class="row">
+
+	<div class="col-sm-4">
+	 <div id = "box">
+		  <p id="note"><b>You have 3 Minutes to solve the puzzle</b></p>
+		  <p id="time"></p>
+	  	<button  id ="stop">Stop time</button>
+		  <button id ="start">Start time</button>
+			<p id ="gameover">GAME OVER !</p>
+   </div>
+  </div>
+
+
+	<div class="col-sm-8">
+		<div id ="box2">
+     <ul id='sortable'>
+
+			 <li class='ui-state-default' id='e1' >
+		         	<img src='images/elephant1.jpg' />
+			 </li>
+			 <li class='ui-state-default' id='e2' >
+			 		    <img src='images/elephant2.jpg' />
+			 </li>
+			 <li class='ui-state-default' id='e3'>
+						 <img src='images/elephant3.jpg' />
+			</li>
+			<li class='ui-state-default' id='e4' >
+						<img src='images/elephant4.jpg' />
+		  </li>
+		  <li class='ui-state-default' id='e5' >
+					 <img src='images/elephant5.jpg' />
+		  </li>
+		  <li class='ui-state-default' id='e6' >
+					<img src='images/elephant6.jpg' />
+	    </li>
+	    <li class='ui-state-default' id='e7' >
+					<img src='images/elephant7.jpg' />
+	    </li>
+			<li class='ui-state-default' id='e8' >
+						<img src='images/elephant8.jpg' />
+		  </li>
+			<li class='ui-state-default' id='e9' >
+						<img src='images/elephant9.jpg' />
+		  </li>
+	  </ul>
+   </div>
+  </div>
+ </div>
+
+
+
+	</body>
+</html>
